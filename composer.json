@@ -1,0 +1,22 @@
+{
+    "name": "maxprihodko8/application-message-feed",
+    "description": "Twitter app for receiving messages and show to user on frontend",
+    "authors": [
+        {
+            "name": "Maxim Prihodko",
+            "email": "max.prihodko8@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+    },
+    "autoload": {
+        "files": [
+
+        ],
+        "psr-4": {
+            "app\\": "app/",
+            "src\\": "src/"
+        }
+    }
+}
