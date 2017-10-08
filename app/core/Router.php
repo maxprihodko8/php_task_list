@@ -12,7 +12,7 @@ class Router
      * constructor of router of application with router config file path
      */
     public function __construct($routesPath) {
-        $this->routes = include ($routesPath);
+        $this->routes = include($routesPath);
     }
 
     /**
@@ -35,8 +35,33 @@ class Router
         return '/';
     }
 
-    public function run()
-    {
-        $this->getURI();
+
+    public function run() {
+        $uri = $this->getURI();
+
+        foreach($this->routes ?? [] as $pattern => $route) {
+            if (preg_match("~$pattern~", $uri)) {
+                $internalRoute = preg_replace("~$pattern~", $route, $uri);
+                $segments = explode('/', $internalRoute);
+                $controller = ucfirst(array_shift($segments)) . 'Controller';
+                $action = 'action' . ucfirst(array_shift($segments));
+                $parameters = $segments;
+
+                $controllerFile = ROOT . '/../src/controllers/' . $controller . '.php';
+                if(file_exists($controllerFile)) {
+                    include($controllerFile);
+                }
+
+                if(!is_callable(array($controller, $action))) {
+                    header("HTTP/1.0 404 Not Found");
+                    return;
+                }
+
+                call_user_func_array(array($controller, $action), $parameters);
+            }
+        }
+
+        header("HTTP/1.0 404 Not Found");
+        return;
     }
 }
