@@ -45,35 +45,28 @@
                     <input ng-model="new_task.image" id="image"/>
                 </label>
                 <input type="submit" value="Submit" ng-click="newTaskFunc()">
+                <input type="checkbox" ng-click="showNewTask = !showNewTask" aria-label="toggle feature view">Превью
             </form>
         </div>
 
+        <ul class="list" id="new_task_ul" ng-show="showNewTask">
+            <li class="list-item">
+                <div class="list-content">
+                    <h2>{{new_task.username}}</h2>
+                    <img ng-src="{{new_task.image}}" />
+                    <p>{{new_task.text}}</p>
+                    <p>{{new_task.email}}</p>
+                </div>
+            </li>
+        </ul>
+
     </div>
+
+
+
 </div>
-
-
-<script>
-    var modal = document.getElementById('myModal');
-    var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    btn.onclick = function() {
-        modal.style.display = "block";
-    };
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    };
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-
-
 
 
 
 <script type="application/javascript" src="/web/js/angular_app.js"></script>
+<script type="application/javascript" src="/web/js/modal.js"></script>

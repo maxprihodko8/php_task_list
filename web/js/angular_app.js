@@ -15,6 +15,8 @@ function TaskController($scope, $http) {
         'text': '',
         'image': ''
     };
+
+    $scope.new_task_is_hidden = true;
     
     $scope.numberOfPages=function(){
         return Math.ceil($scope.tasks.length/$scope.pageSize);

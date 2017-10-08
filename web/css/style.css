@@ -45,3 +45,12 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+#new_task_ul {
+    float:none;
+    margin-left:100px;
+}
+
+#task_div .list li {
+    background: aquamarine;
+}
