@@ -49,15 +49,18 @@ class Router
 
                 $controllerFile = ROOT . '/../src/controllers/' . $controller . '.php';
                 if(file_exists($controllerFile)) {
-                    include($controllerFile);
+                    include $controllerFile;
                 }
 
-                if(!is_callable(array($controller, $action))) {
+                $fullControllerPath = '\src\controllers\\' . $controller;
+                $controllerInstance = new $fullControllerPath;
+
+                if(!is_callable([$controllerInstance, $action])) {
                     header("HTTP/1.0 404 Not Found");
                     return;
                 }
+                return call_user_func_array(array($controllerInstance, $action), $parameters);
 
-                call_user_func_array(array($controller, $action), $parameters);
             }
         }
 
