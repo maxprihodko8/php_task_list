@@ -6,7 +6,7 @@
  * Time: 19:50
  */
 
-namespace models;
+namespace src\models;
 
 
 interface Task

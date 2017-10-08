@@ -6,7 +6,7 @@
  * Time: 19:52
  */
 
-namespace models;
+namespace src\models;
 
 
 class UserTask implements Task

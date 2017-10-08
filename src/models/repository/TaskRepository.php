@@ -9,6 +9,7 @@
 namespace src\models\repository;
 
 
+use src\models\UserTask;
 use PDO;
 
 class TaskRepository
@@ -35,6 +36,6 @@ class TaskRepository
 
     public function getAllTasks() {
         $query = $this->pdo->query('SELECT * from task');
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_CLASS, UserTask::class);
     }
 }
