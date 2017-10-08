@@ -41,10 +41,11 @@ class TaskRepository
     }
 
     public function saveTask(UserTask $task) {
-        $stmt = $this->pdo->prepare('INSERT INTO task (username, text, email) VALUES (:username, :text, :email)');
+        $stmt = $this->pdo->prepare('INSERT INTO task (username, text, email, image) VALUES (:username, :text, :email, :image)');
         $stmt->bindParam(':username', $task->getUserName(), PDO::PARAM_STR);
         $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':image', $task->getImage(), PDO::PARAM_STR);
 
         return $stmt->execute();
     }

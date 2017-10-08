@@ -9,6 +9,7 @@
 namespace src\controllers;
 
 use app\core\Controller;
+use src\models\ImageHandler;
 use src\models\repository\TaskRepository;
 use src\models\UserTask;
 
@@ -22,12 +23,18 @@ class ApiController extends Controller
     }
 
     public function actionNewtask() {
-        $params = json_decode(file_get_contents('php://input'),true);
         $task = new UserTask();
-        $task->setUserName($params['username']);
-        $task->setText($params['text']);
-        $task->setEmail($params['email']);
+        $task->setUserName($_POST['username']);
+        $task->setText($_POST['text']);
+        $task->setEmail($_POST['email']);
+
+        if (!empty($_FILES['image'])) {
+            $imageHandler = new ImageHandler();
+            $task->setImage($imageHandler->saveImage($_FILES['image']));
+
+        }
+
         $taskRepository = new TaskRepository($this->pdo);
-        var_dump($taskRepository->saveTask($task));
+        $taskRepository->saveTask($task);
     }
 }

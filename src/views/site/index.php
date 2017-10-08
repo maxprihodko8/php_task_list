@@ -30,21 +30,22 @@
     <div id="myModal" class="modal">
 
         <div class="modal-content">
-            <form>
+            <form action="/api/newtask" method="post" enctype="multipart/form-data">
                 <span class="close">&times;</span>
                 <label for="username"> Username
-                    <input ng-model="new_task.username" id="username"/>
+                    <input ng-model="new_task.username" name="username" id="username"/>
                 </label>
                 <label for="email"> Email
-                    <input ng-model="new_task.email" id="email"/>
+                    <input ng-model="new_task.email" name="email" id="email"/>
                 </label>
                 <label for="text"> Text
-                    <textarea ng-model="new_task.text" id="text"></textarea>
+                    <textarea ng-model="new_task.text" name="text" id="text"></textarea>
                 </label>
                 <label for="image"> Image
-                    <input type="file" file-upload multiple ng-model="new_task.image" id="image"/>
+                    <input type="file" size = '50' name="image" id="image"/>
                 </label>
-                <input type="submit" value="Submit" ng-click="newTaskFunc()">
+                <!--<input type="submit" value="Submit" ng-click="newTaskFunc()">-->
+                <input type="submit" value="Submit"/>
                 <input type="checkbox" ng-click="showNewTask = !showNewTask" aria-label="toggle feature view">Превью
             </form>
         </div>
