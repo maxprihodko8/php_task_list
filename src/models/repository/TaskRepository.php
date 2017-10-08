@@ -9,6 +9,7 @@
 namespace src\models\repository;
 
 
+use src\models\Task;
 use src\models\UserTask;
 use PDO;
 
@@ -37,5 +38,14 @@ class TaskRepository
     public function getAllTasks() {
         $query = $this->pdo->query('SELECT * from task');
         return $query->fetchAll(PDO::FETCH_CLASS, UserTask::class);
+    }
+
+    public function saveTask(UserTask $task) {
+        $stmt = $this->pdo->prepare('INSERT INTO task (username, text, email) VALUES (:username, :text, :email)');
+        $stmt->bindParam(':username', $task->getUserName(), PDO::PARAM_STR);
+        $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
+
+        return $stmt->execute();
     }
 }

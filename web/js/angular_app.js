@@ -8,6 +8,13 @@ function TaskController($scope, $http) {
 
     $scope.currentPage = 0;
     $scope.pageSize = 3;
+
+    $scope.new_task = {
+        'username': '',
+        'email': '',
+        'text': '',
+        'image': ''
+    };
     
     $scope.numberOfPages=function(){
         return Math.ceil($scope.tasks.length/$scope.pageSize);
@@ -19,7 +26,7 @@ function TaskController($scope, $http) {
         $http({
             method: 'POST',
             url: url,
-            headers: {
+        headers: {
                 'Content-type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             }
@@ -30,8 +37,23 @@ function TaskController($scope, $http) {
         }, function errorCallback(response) {
         });
     }
-    getMessages();
 
+    $scope.newTaskFunc = function sendNewTask() {
+        var url = '/api/newtask';
+        $http({
+            method: 'POST',
+            url: url,
+            data: angular.toJson($scope.new_task),
+            headers: {
+                'Content-type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function successCallback(response) {
+            location.reload();
+        }, function errorCallback(response) {
+        });
+    };
+    getMessages();
 }
 
 

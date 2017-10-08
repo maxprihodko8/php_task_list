@@ -25,7 +25,52 @@
         Next
     </button>
 
+    <button id="myBtn">New Task</button>
+
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+            <form>
+                <span class="close">&times;</span>
+                <label for="username"> Username
+                    <input ng-model="new_task.username" id="username"/>
+                </label>
+                <label for="email"> Email
+                    <input ng-model="new_task.email" id="email"/>
+                </label>
+                <label for="text"> Text
+                    <textarea ng-model="new_task.text" id="text"></textarea>
+                </label>
+                <label for="image"> Image
+                    <input ng-model="new_task.image" id="image"/>
+                </label>
+                <input type="submit" value="Submit" ng-click="newTaskFunc()">
+            </form>
+        </div>
+
+    </div>
 </div>
+
+
+<script>
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    };
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 
 
