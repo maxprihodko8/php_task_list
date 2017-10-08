@@ -1,4 +1,5 @@
-<div ng-app="TaskFeed" ng-controller="TaskController" class="ng-cloak">
+<div ng-app="TaskFeed" ng-controller="TaskController" class="ng-cloak" id="task_div">
+
     <ul ng-repeat="task in tasks  | startFrom:currentPage*pageSize | limitTo:pageSize" class="list">
         <li class="list-item">
             <div class="list-content">
