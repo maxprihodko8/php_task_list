@@ -49,4 +49,11 @@ class TaskRepository
 
         return $stmt->execute();
     }
+
+    public function completeTask($id) {
+        $stmt = $this->pdo->prepare('UPDATE task SET is_completed = 1 WHERE id = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+
+    }
 }

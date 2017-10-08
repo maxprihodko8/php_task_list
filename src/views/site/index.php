@@ -10,6 +10,8 @@
         <li class="list-item">
             <div class="list-content">
                 <h2>{{task.username}}</h2>
+                <p>{{task.status}}</p>
+                <p ng-show="is_admin && task.is_completed == 0"><input type="button" ng-click="completeTask(task.id)"></p>
                 <img ng-src="{{task.image}}" />
                 <p>{{task.text}}</p>
                 <p>{{task.email}}</p>
@@ -41,6 +43,9 @@
                 <label for="text"> Text
                     <textarea ng-model="new_task.text" name="text" id="text"></textarea>
                 </label>
+                <label for="text"> Status
+                    <input ng-model="new_task.status" name="status" id="status" />
+                </label>
                 <label for="image"> Image
                     <input type="file" size = '50' name="image" id="image"/>
                 </label>
@@ -54,6 +59,7 @@
             <li class="list-item">
                 <div class="list-content">
                     <h2>{{new_task.username}}</h2>
+                    <p>{{new_task.status}}</p>
                     <p>{{new_task.text}}</p>
                     <p>{{new_task.email}}</p>
                 </div>

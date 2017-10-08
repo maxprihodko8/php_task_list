@@ -13,9 +13,11 @@ function TaskController($scope, $http) {
         'username': '',
         'email': '',
         'text': '',
-        'image': ''
+        'image': '',
+        'status': ''
     };
     $scope.files = [];
+    $scope.is_admin = false;
 
     $scope.$on("fileSelected", function (event, args) {
         $scope.$apply(function () {
@@ -45,9 +47,29 @@ function TaskController($scope, $http) {
         });
     }
 
+    function isAdminCheck() {
+        if (getCookie('is_admin')) {
+            $scope.is_admin = true;
+        }
+    }
+
+    $scope.completeTask = function (id) {
+        var url = '/api/completetask/' + id;
+        $http({
+            method: 'POST',
+            url: url,
+            headers: {
+                'Content-type': undefined,
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(function successCallback(response) {
+            location.reload();
+        }, function errorCallback(response) {
+        });
+    };
+
     $scope.newTaskFunc = function sendNewTask() {
         var url = '/api/newtask';
-        console.log($scope.files);
         $http({
             method: 'POST',
             url: url,
@@ -62,7 +84,9 @@ function TaskController($scope, $http) {
         });
     };
 
+
     getMessages();
+    isAdminCheck();
 }
 
 
@@ -72,3 +96,10 @@ Application.filter('startFrom', function() {
         return input.slice(start);
     }
 });
+
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}

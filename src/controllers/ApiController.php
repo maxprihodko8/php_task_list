@@ -31,10 +31,14 @@ class ApiController extends Controller
         if (!empty($_FILES['image'])) {
             $imageHandler = new ImageHandler();
             $task->setImage($imageHandler->saveImage($_FILES['image']));
-
         }
 
         $taskRepository = new TaskRepository($this->pdo);
         $taskRepository->saveTask($task);
+    }
+
+    public function actionCompletetask($id) {
+        $taskRepository = new TaskRepository($this->pdo);
+        var_dump($taskRepository->completeTask($id));
     }
 }

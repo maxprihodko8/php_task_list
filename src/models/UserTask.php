@@ -15,6 +15,24 @@ class UserTask implements Task
     public $email;
     public $text;
     public $image;
+    public $status;
+    public $is_completed;
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
 
 
     /**
@@ -79,6 +97,22 @@ class UserTask implements Task
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsCompleted()
+    {
+        return $this->is_completed;
+    }
+
+    /**
+     * @param mixed $is_completed
+     */
+    public function setIsCompleted($is_completed)
+    {
+        $this->is_completed = $is_completed;
     }
 
 }
