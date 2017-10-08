@@ -5,6 +5,12 @@ Application.controller('TaskController', TaskController);
 function TaskController($scope, $http) {
     $scope.tasks = {};
 
+    $scope.currentPage = 0;
+    $scope.pageSize = 3;
+    
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.tasks.length/$scope.pageSize);
+    };
 
     function getMessages() {
         var url = '/api/tasks';
@@ -24,6 +30,13 @@ function TaskController($scope, $http) {
         });
     }
     getMessages();
+
 }
 
 
+Application.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start;
+        return input.slice(start);
+    }
+});
