@@ -4,6 +4,7 @@ Application.controller('TaskController', TaskController);
 
 function TaskController($scope, $http) {
     $scope.tasks = {};
+    $scope.sort = 'status';
 
     $scope.currentPage = 0;
     $scope.pageSize = 3;
