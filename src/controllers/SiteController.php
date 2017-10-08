@@ -14,6 +14,6 @@ use app\core\Controller;
 class SiteController extends Controller
 {
     public function actionIndex() {
-        return '22';
+        $this->view->render('site/index');
     }
 }
