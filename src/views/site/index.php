@@ -42,7 +42,7 @@
                     <textarea ng-model="new_task.text" id="text"></textarea>
                 </label>
                 <label for="image"> Image
-                    <input ng-model="new_task.image" id="image"/>
+                    <input type="file" file-upload multiple ng-model="new_task.image" id="image"/>
                 </label>
                 <input type="submit" value="Submit" ng-click="newTaskFunc()">
                 <input type="checkbox" ng-click="showNewTask = !showNewTask" aria-label="toggle feature view">Превью
@@ -53,7 +53,6 @@
             <li class="list-item">
                 <div class="list-content">
                     <h2>{{new_task.username}}</h2>
-                    <img ng-src="{{new_task.image}}" />
                     <p>{{new_task.text}}</p>
                     <p>{{new_task.email}}</p>
                 </div>
