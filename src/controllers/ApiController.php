@@ -23,6 +23,9 @@ class ApiController extends Controller
     }
 
     public function actionNewtask() {
+        if (!empty($_POST['id'])) {
+            return $this->actionUpdateTask();
+        }
         $task = new UserTask();
         $task->setUserName($_POST['username']);
         $task->setText($_POST['text']);
@@ -35,10 +38,24 @@ class ApiController extends Controller
 
         $taskRepository = new TaskRepository($this->pdo);
         $taskRepository->saveTask($task);
+        header('Location: /index');
     }
 
     public function actionCompletetask($id) {
         $taskRepository = new TaskRepository($this->pdo);
-        var_dump($taskRepository->completeTask($id));
+        $taskRepository->completeTask($id);
+    }
+
+    public function actionUpdateTask() {
+        $task = new UserTask();
+        $task->setId($_POST['id']);
+        $task->setUserName($_POST['username']);
+        $task->setText($_POST['text']);
+        $task->setEmail($_POST['email']);
+
+        $taskRepository = new TaskRepository($this->pdo);
+        $taskRepository->updateTask($task);
+        header('Location: /index');
+        return;
     }
 }

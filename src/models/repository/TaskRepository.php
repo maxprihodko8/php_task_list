@@ -54,6 +54,17 @@ class TaskRepository
         $stmt = $this->pdo->prepare('UPDATE task SET is_completed = 1 WHERE id = :id');
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
 
+    public function updateTask(UserTask $task) {
+        $stmt = $this->pdo->prepare('UPDATE task set username = :username, text = :text, email = :email, image = :image WHERE id = :id)');
+        $stmt->bindParam(':id', $task->getId(), PDO::PARAM_INT);
+        $stmt->bindParam(':username', $task->getUserName(), PDO::PARAM_STR);
+        $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
+        $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':image', $task->getImage(), PDO::PARAM_STR);
+
+        $stmt->execute();
+        return;
     }
 }

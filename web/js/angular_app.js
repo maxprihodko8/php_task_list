@@ -70,6 +70,7 @@ function TaskController($scope, $http) {
 
     $scope.newTaskFunc = function sendNewTask() {
         var url = '/api/newtask';
+
         $http({
             method: 'POST',
             url: url,
@@ -84,6 +85,10 @@ function TaskController($scope, $http) {
         });
     };
 
+    $scope.editTask = function (task) {
+        $scope.new_task = task;
+        document.getElementById('myBtn').click();
+    };
 
     getMessages();
     isAdminCheck();

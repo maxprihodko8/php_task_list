@@ -9,5 +9,5 @@ define('ROOT', __DIR__);
 require __DIR__ . '/../vendor/autoload.php';
 
 $router = new Router(ROOT . '/../app/config/routes.php');
-$responce = $router->run();
-echo $responce;
+$response = $router->run();
+echo $response;
