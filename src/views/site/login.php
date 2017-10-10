@@ -1,10 +1,11 @@
-<h2>Login page</h2>
-<form method="post">
-    <label for="username"> Username
-        <input type="text" name="username" id="username">
-    </label>
-    <label for="password"> Password
-        <input type="password" name="password" id="password">
-    </label>
-    <input type="submit" value="Submit"> Submit
-</form>
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" method="post">
+            <input type="text" name="username" placeholder="username"/>
+            <input type="password" name="password" placeholder="password"/>
+            <button type="submit">login</button>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/web/css/login_page.css">
