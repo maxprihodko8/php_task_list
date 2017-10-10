@@ -46,7 +46,7 @@ class TaskRepository
         $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
         $stmt->bindParam(':image', $task->getImage(), PDO::PARAM_STR);
-        $stmt->bindParam(':status', $task->getImage(), PDO::PARAM_STR);
+        $stmt->bindParam(':status', $task->getStatus(), PDO::PARAM_STR);
 
         return $stmt->execute();
     }
