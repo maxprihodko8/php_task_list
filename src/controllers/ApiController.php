@@ -48,14 +48,13 @@ class ApiController extends Controller
 
     public function actionUpdateTask() {
         $task = new UserTask();
-        $task->setId($_POST['id']);
         $task->setUserName($_POST['username']);
         $task->setText($_POST['text']);
         $task->setEmail($_POST['email']);
 
         $taskRepository = new TaskRepository($this->pdo);
-        $taskRepository->updateTask($task);
-        header('Location: /index');
+        $taskRepository->updateTask($task, $_POST['id']);
+        header("Refresh:0");
         return;
     }
 }
