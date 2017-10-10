@@ -30,6 +30,7 @@ class ApiController extends Controller
         $task->setUserName($_POST['username']);
         $task->setText($_POST['text']);
         $task->setEmail($_POST['email']);
+        $task->setStatus($_POST['status']);
 
         if (!empty($_FILES['image'])) {
             $imageHandler = new ImageHandler();
@@ -51,6 +52,7 @@ class ApiController extends Controller
         $task->setUserName($_POST['username']);
         $task->setText($_POST['text']);
         $task->setEmail($_POST['email']);
+        $task->setStatus($_POST['status']);
 
         $taskRepository = new TaskRepository($this->pdo);
         $taskRepository->updateTask($task, $_POST['id']);

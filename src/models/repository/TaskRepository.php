@@ -41,11 +41,12 @@ class TaskRepository
     }
 
     public function saveTask(UserTask $task) {
-        $stmt = $this->pdo->prepare('INSERT INTO task (username, text, email, image) VALUES (:username, :text, :email, :image)');
+        $stmt = $this->pdo->prepare('INSERT INTO task (username, status, text, email, image) VALUES (:username, :status, :text, :email, :image)');
         $stmt->bindParam(':username', $task->getUserName(), PDO::PARAM_STR);
         $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
         $stmt->bindParam(':image', $task->getImage(), PDO::PARAM_STR);
+        $stmt->bindParam(':status', $task->getImage(), PDO::PARAM_STR);
 
         return $stmt->execute();
     }
@@ -57,10 +58,11 @@ class TaskRepository
     }
 
     public function updateTask(UserTask $task, $id) {
-        $stmt = $this->pdo->prepare('UPDATE task set username = :username, text = :text, email = :email WHERE id = :id');
+        $stmt = $this->pdo->prepare('UPDATE task set username = :username, status = :status, text = :text, email = :email WHERE id = :id');
         $stmt->bindParam(':username', $task->getUserName(), PDO::PARAM_STR);
         $stmt->bindParam(':text', $task->getText(), PDO::PARAM_STR);
         $stmt->bindParam(':email', $task->getEmail(), PDO::PARAM_STR);
+        $stmt->bindParam(':status', $task->getStatus(), PDO::PARAM_STR);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         $stmt->execute();
