@@ -25,7 +25,7 @@
         Previous
     </button>
     {{currentPage+1}}/{{numberOfPages()}}
-    <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+    <button ng-disabled="currentPage >= tasks.length/pageSize - 1" ng-click="currentPage=currentPage+1">
         Next
     </button>
 
